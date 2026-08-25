@@ -1,58 +1,58 @@
 import { Hexagon, Plus, TrendingUp, TrendingDown, DollarSign } from "lucide-react";
 
-export function Resources() {
-  const resources = [
+export function Recursos() {
+  const recursos = [
     {
       id: 1,
-      group: "IA e Machine Learning",
-      allocated: 45000,
-      spent: 32500,
-      remaining: 12500,
-      category: "Equipamentos",
-      date: "2024-01-15"
+      grupo: "IA e Machine Learning",
+      alocado: 45000,
+      utilizado: 32500,
+      saldo: 12500,
+      categoria: "Equipamentos",
+      data: "2024-01-15"
     },
     {
       id: 2,
-      group: "Computação Quântica",
-      allocated: 67000,
-      spent: 28000,
-      remaining: 39000,
-      category: "Pesquisa",
-      date: "2024-02-01"
+      grupo: "Computação Quântica",
+      alocado: 67000,
+      utilizado: 28000,
+      saldo: 39000,
+      categoria: "Pesquisa",
+      data: "2024-02-01"
     },
     {
       id: 3,
-      group: "Segurança Cibernética",
-      allocated: 38000,
-      spent: 35200,
-      remaining: 2800,
-      category: "Software",
-      date: "2023-11-20"
+      grupo: "Segurança Cibernética",
+      alocado: 38000,
+      utilizado: 35200,
+      saldo: 2800,
+      categoria: "Software",
+      data: "2023-11-20"
     },
     {
       id: 4,
-      group: "Blockchain e Criptomoedas",
-      allocated: 52000,
-      spent: 8500,
-      remaining: 43500,
-      category: "Infraestrutura",
-      date: "2024-03-10"
+      grupo: "Blockchain e Criptomoedas",
+      alocado: 52000,
+      utilizado: 8500,
+      saldo: 43500,
+      categoria: "Infraestrutura",
+      data: "2024-03-10"
     },
   ];
 
-  const totalAllocated = resources.reduce((acc, r) => acc + r.allocated, 0);
-  const totalSpent = resources.reduce((acc, r) => acc + r.spent, 0);
-  const totalRemaining = resources.reduce((acc, r) => acc + r.remaining, 0);
+  const totalAlocado = recursos.reduce((soma, r) => soma + r.alocado, 0);
+  const totalUtilizado = recursos.reduce((soma, r) => soma + r.utilizado, 0);
+  const saldoDisponivel = recursos.reduce((soma, r) => soma + r.saldo, 0);
 
   return (
     <div className="h-full overflow-auto p-6">
-      {/* Header */}
+      {/* Cabeçalho */}
       <div className="mb-6">
         <h1 className="text-white mb-2">Recursos Financeiros</h1>
         <p className="text-[#8b96a5]">Acompanhe a alocação e utilização de recursos</p>
       </div>
 
-      {/* Summary Cards */}
+      {/* Cards de Resumo */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
         <div className="bg-[#0d1f30] rounded-2xl p-6 border border-[#3d4f62]/30 shadow-[6px_6px_16px_#050c14,-6px_-6px_16px_#0f2638]">
           <div className="flex items-center gap-3 mb-4">
@@ -62,7 +62,7 @@ export function Resources() {
             <div>
               <p className="text-[#8b96a5] text-sm">Total Alocado</p>
               <h3 className="text-white text-xl font-bold">
-                R$ {(totalAllocated / 1000).toFixed(0)}k
+                R$ {(totalAlocado / 1000).toFixed(0)}k
               </h3>
             </div>
           </div>
@@ -79,12 +79,12 @@ export function Resources() {
             <div>
               <p className="text-[#8b96a5] text-sm">Total Utilizado</p>
               <h3 className="text-white text-xl font-bold">
-                R$ {(totalSpent / 1000).toFixed(0)}k
+                R$ {(totalUtilizado / 1000).toFixed(0)}k
               </h3>
             </div>
           </div>
           <div className="flex items-center gap-1 text-xs text-[#ff8c42]">
-            <span>{((totalSpent / totalAllocated) * 100).toFixed(1)}% do orçamento</span>
+            <span>{((totalUtilizado / totalAlocado) * 100).toFixed(1)}% do orçamento</span>
           </div>
         </div>
 
@@ -96,17 +96,17 @@ export function Resources() {
             <div>
               <p className="text-[#8b96a5] text-sm">Saldo Disponível</p>
               <h3 className="text-white text-xl font-bold">
-                R$ {(totalRemaining / 1000).toFixed(0)}k
+                R$ {(saldoDisponivel / 1000).toFixed(0)}k
               </h3>
             </div>
           </div>
           <div className="flex items-center gap-1 text-xs text-[#10b981]">
-            <span>{((totalRemaining / totalAllocated) * 100).toFixed(1)}% disponível</span>
+            <span>{((saldoDisponivel / totalAlocado) * 100).toFixed(1)}% disponível</span>
           </div>
         </div>
       </div>
 
-      {/* Resources Table */}
+      {/* Tabela de Recursos */}
       <div className="bg-[#0d1f30] rounded-2xl border border-[#3d4f62]/30 shadow-[6px_6px_16px_#050c14,-6px_-6px_16px_#0f2638] overflow-hidden">
         <div className="p-6 border-b border-[#3d4f62]/30 flex items-center justify-between">
           <h2 className="text-white">Alocação por Grupo</h2>
@@ -129,14 +129,14 @@ export function Resources() {
               </tr>
             </thead>
             <tbody>
-              {resources.map((resource, index) => {
-                const utilizationPercent = (resource.spent / resource.allocated) * 100;
+              {recursos.map((recurso, index) => {
+                const percentualUtilizacao = (recurso.utilizado / recurso.alocado) * 100;
                 
                 return (
                   <tr 
-                    key={resource.id}
+                    key={recurso.id}
                     className={`border-b border-[#3d4f62]/30 hover:bg-[#0a1929]/50 transition-colors ${
-                      index === resources.length - 1 ? 'border-b-0' : ''
+                      index === recursos.length - 1 ? 'border-b-0' : ''
                     }`}
                   >
                     <td className="px-6 py-4">
@@ -144,37 +144,37 @@ export function Resources() {
                         <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#ff8c42] to-[#f94c10] flex items-center justify-center shadow-lg">
                           <Hexagon className="w-5 h-5 text-white" />
                         </div>
-                        <span className="text-white font-medium">{resource.group}</span>
+                        <span className="text-white font-medium">{recurso.grupo}</span>
                       </div>
                     </td>
                     <td className="px-6 py-4">
                       <span className="px-3 py-1 rounded-full text-xs font-medium bg-[#4a9eff]/20 text-[#4a9eff]">
-                        {resource.category}
+                        {recurso.categoria}
                       </span>
                     </td>
                     <td className="px-6 py-4 text-right text-white">
-                      R$ {resource.allocated.toLocaleString('pt-BR')}
+                      R$ {recurso.alocado.toLocaleString('pt-BR')}
                     </td>
                     <td className="px-6 py-4 text-right text-[#ff8c42]">
-                      R$ {resource.spent.toLocaleString('pt-BR')}
+                      R$ {recurso.utilizado.toLocaleString('pt-BR')}
                     </td>
                     <td className="px-6 py-4 text-right text-[#10b981]">
-                      R$ {resource.remaining.toLocaleString('pt-BR')}
+                      R$ {recurso.saldo.toLocaleString('pt-BR')}
                     </td>
                     <td className="px-6 py-4">
                       <div className="flex flex-col items-center gap-2">
                         <div className="w-full max-w-[120px] h-2 bg-[#0a1929] rounded-full overflow-hidden shadow-[inset_2px_2px_4px_#050c14]">
                           <div 
                             className={`h-full rounded-full transition-all duration-300 ${
-                              utilizationPercent > 80 
+                              percentualUtilizacao > 80 
                                 ? 'bg-gradient-to-r from-[#ff8c42] to-[#f94c10]' 
                                 : 'bg-gradient-to-r from-[#10b981] to-[#059669]'
                             }`}
-                            style={{ width: `${utilizationPercent}%` }}
+                            style={{ width: `${percentualUtilizacao}%` }}
                           />
                         </div>
                         <span className="text-xs text-[#8b96a5]">
-                          {utilizationPercent.toFixed(1)}%
+                          {percentualUtilizacao.toFixed(1)}%
                         </span>
                       </div>
                     </td>

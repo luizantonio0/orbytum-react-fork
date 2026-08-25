@@ -11,7 +11,7 @@ export function Dashboard() {
 
   return (
     <div className="h-full flex flex-col">
-      {/* Stats Grid */}
+      {/* Stats Grid
       <div className="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {stats.map((stat, index) => (
           <div
@@ -33,7 +33,7 @@ export function Dashboard() {
             </div>
           </div>
         ))}
-      </div>
+      </div> */}
 
       {/* Solar System Visualization */}
       <div className="flex-1 min-h-0">
