@@ -2,110 +2,110 @@ import { useParams, useNavigate } from "react-router";
 import { ArrowLeft, Plus, Search, UserCheck, Shield, Edit, Trash2, Crown, User, Users } from "lucide-react";
 import { useState } from "react";
 
-export function GroupParticipants() {
+export function ParticipantesDoGrupo() {
   const { groupId } = useParams();
   const navigate = useNavigate();
-  const [searchTerm, setSearchTerm] = useState("");
-  const [filterRole, setFilterRole] = useState("all");
+  const [termoBusca, setTermoBusca] = useState("");
+  const [filtroFuncao, setFiltroFuncao] = useState("all");
 
-  // Mock data - seria buscado via API usando groupId
-  const groupInfo = {
+  // Dados fictícios - seriam buscados via API usando groupId
+  const informacoesDoGrupo = {
     id: groupId,
-    name: "Inteligência Artificial e Machine Learning",
+    nome: "Inteligência Artificial e Machine Learning",
     supervisor: "Dr. Carlos Silva"
   };
 
-  const participants = [
+  const participantes = [
     {
       id: 1,
-      name: "Dr. Carlos Silva",
+      nome: "Dr. Carlos Silva",
       email: "carlos.silva@universidade.edu.br",
-      role: "Supervisor",
-      joinDate: "2024-01-15",
+      funcao: "Supervisor",
+      dataEntrada: "2024-01-15",
       status: "Ativo",
-      permissions: ["Gerenciar Grupo", "Aprovar Projetos", "Gerenciar Orçamento", "Gerenciar Membros"]
+      permissoes: ["Gerenciar Grupo", "Aprovar Projetos", "Gerenciar Orçamento", "Gerenciar Membros"]
     },
     {
       id: 2,
-      name: "João Pedro Oliveira",
+      nome: "João Pedro Oliveira",
       email: "joao.oliveira@universidade.edu.br",
-      role: "Coordenador",
-      joinDate: "2024-01-20",
+      funcao: "Coordenador",
+      dataEntrada: "2024-01-20",
       status: "Ativo",
-      permissions: ["Criar Projetos", "Editar Materiais", "Visualizar Orçamento"]
+      permissoes: ["Criar Projetos", "Editar Materiais", "Visualizar Orçamento"]
     },
     {
       id: 3,
-      name: "Ana Carolina Lima",
+      nome: "Ana Carolina Lima",
       email: "ana.lima@universidade.edu.br",
-      role: "Pesquisador",
-      joinDate: "2024-02-01",
+      funcao: "Pesquisador",
+      dataEntrada: "2024-02-01",
       status: "Ativo",
-      permissions: ["Criar Projetos", "Editar Materiais"]
+      permissoes: ["Criar Projetos", "Editar Materiais"]
     },
     {
       id: 4,
-      name: "Rafael Santos Costa",
+      nome: "Rafael Santos Costa",
       email: "rafael.costa@universidade.edu.br",
-      role: "Pesquisador",
-      joinDate: "2024-02-10",
+      funcao: "Pesquisador",
+      dataEntrada: "2024-02-10",
       status: "Ativo",
-      permissions: ["Criar Projetos", "Editar Materiais"]
+      permissoes: ["Criar Projetos", "Editar Materiais"]
     },
     {
       id: 5,
-      name: "Beatriz Almeida Rocha",
+      nome: "Beatriz Almeida Rocha",
       email: "beatriz.rocha@universidade.edu.br",
-      role: "Colaborador",
-      joinDate: "2024-03-01",
+      funcao: "Colaborador",
+      dataEntrada: "2024-03-01",
       status: "Ativo",
-      permissions: ["Visualizar Projetos", "Comentar"]
+      permissoes: ["Visualizar Projetos", "Comentar"]
     },
     {
       id: 6,
-      name: "Lucas Ferreira Silva",
+      nome: "Lucas Ferreira Silva",
       email: "lucas.silva@universidade.edu.br",
-      role: "Colaborador",
-      joinDate: "2024-03-05",
+      funcao: "Colaborador",
+      dataEntrada: "2024-03-05",
       status: "Ativo",
-      permissions: ["Visualizar Projetos", "Comentar"]
+      permissoes: ["Visualizar Projetos", "Comentar"]
     },
     {
       id: 7,
-      name: "Marina Souza Santos",
+      nome: "Marina Souza Santos",
       email: "marina.santos@universidade.edu.br",
-      role: "Aluno",
-      joinDate: "2024-03-15",
+      funcao: "Aluno",
+      dataEntrada: "2024-03-15",
       status: "Ativo",
-      permissions: ["Visualizar Projetos"]
+      permissoes: ["Visualizar Projetos"]
     },
     {
       id: 8,
-      name: "Felipe Rodrigues Lima",
+      nome: "Felipe Rodrigues Lima",
       email: "felipe.lima@universidade.edu.br",
-      role: "Aluno",
-      joinDate: "2024-03-15",
+      funcao: "Aluno",
+      dataEntrada: "2024-03-15",
       status: "Inativo",
-      permissions: ["Visualizar Projetos"]
+      permissoes: ["Visualizar Projetos"]
     },
   ];
 
-  const filteredParticipants = participants.filter(p => {
-    const matchesSearch = p.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         p.email.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesFilter = filterRole === "all" || p.role === filterRole;
-    return matchesSearch && matchesFilter;
+  const participantesFiltrados = participantes.filter(p => {
+    const correspondeBusca = p.nome.toLowerCase().includes(termoBusca.toLowerCase()) ||
+                         p.email.toLowerCase().includes(termoBusca.toLowerCase());
+    const correspondeFiltro = filtroFuncao === "all" || p.funcao === filtroFuncao;
+    return correspondeBusca && correspondeFiltro;
   });
 
-  const stats = {
-    total: participants.filter(p => p.status === "Ativo").length,
-    supervisor: participants.filter(p => p.role === "Supervisor").length,
-    coordinators: participants.filter(p => p.role === "Coordenador").length,
-    researchers: participants.filter(p => p.role === "Pesquisador").length,
+  const estatisticas = {
+    total: participantes.filter(p => p.status === "Ativo").length,
+    supervisores: participantes.filter(p => p.funcao === "Supervisor").length,
+    coordenadores: participantes.filter(p => p.funcao === "Coordenador").length,
+    pesquisadores: participantes.filter(p => p.funcao === "Pesquisador").length,
   };
 
-  const getRoleIcon = (role: string) => {
-    switch (role) {
+  const obterIconeFuncao = (funcao: string) => {
+    switch (funcao) {
       case "Supervisor": return <Crown className="w-5 h-5" />;
       case "Coordenador": return <Shield className="w-5 h-5" />;
       case "Pesquisador": return <UserCheck className="w-5 h-5" />;
@@ -113,8 +113,8 @@ export function GroupParticipants() {
     }
   };
 
-  const getRoleColor = (role: string) => {
-    switch (role) {
+  const obterCorFuncao = (funcao: string) => {
+    switch (funcao) {
       case "Supervisor": return "bg-gradient-to-r from-[#ff8c42] to-[#f94c10] text-white";
       case "Coordenador": return "bg-[#7c3aed]/20 text-[#7c3aed]";
       case "Pesquisador": return "bg-[#4a9eff]/20 text-[#4a9eff]";
@@ -125,7 +125,7 @@ export function GroupParticipants() {
 
   return (
     <div className="h-full overflow-auto p-6">
-      {/* Header with Back Button */}
+      {/* Cabeçalho com Botão Voltar */}
       <div className="mb-6">
         <button
           onClick={() => navigate("/grupos")}
@@ -139,20 +139,20 @@ export function GroupParticipants() {
             <Users className="w-6 h-6 text-white" />
           </div>
           <div>
-            <h1 className="text-white">{groupInfo.name}</h1>
+            <h1 className="text-white">{informacoesDoGrupo.nome}</h1>
             <p className="text-[#8b96a5]">Gerenciar participantes e permissões</p>
           </div>
         </div>
       </div>
 
-      {/* Stats Cards */}
+      {/* Cards de Estatísticas */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
         <div className="bg-[#0d1f30] rounded-xl p-4 border border-[#3d4f62]/30 shadow-[4px_4px_12px_#050c14,-4px_-4px_12px_#0f2638]">
           <div className="flex items-center justify-between mb-2">
             <span className="text-[#8b96a5] text-sm">Total Ativos</span>
             <Users className="w-5 h-5 text-[#4a9eff]" />
           </div>
-          <div className="text-white text-2xl font-bold">{stats.total}</div>
+          <div className="text-white text-2xl font-bold">{estatisticas.total}</div>
         </div>
 
         <div className="bg-[#0d1f30] rounded-xl p-4 border border-[#3d4f62]/30 shadow-[4px_4px_12px_#050c14,-4px_-4px_12px_#0f2638]">
@@ -160,7 +160,7 @@ export function GroupParticipants() {
             <span className="text-[#8b96a5] text-sm">Supervisor</span>
             <Crown className="w-5 h-5 text-[#ff8c42]" />
           </div>
-          <div className="text-white text-2xl font-bold">{stats.supervisor}</div>
+          <div className="text-white text-2xl font-bold">{estatisticas.supervisores}</div>
         </div>
 
         <div className="bg-[#0d1f30] rounded-xl p-4 border border-[#3d4f62]/30 shadow-[4px_4px_12px_#050c14,-4px_-4px_12px_#0f2638]">
@@ -168,7 +168,7 @@ export function GroupParticipants() {
             <span className="text-[#8b96a5] text-sm">Coordenadores</span>
             <Shield className="w-5 h-5 text-[#7c3aed]" />
           </div>
-          <div className="text-white text-2xl font-bold">{stats.coordinators}</div>
+          <div className="text-white text-2xl font-bold">{estatisticas.coordenadores}</div>
         </div>
 
         <div className="bg-[#0d1f30] rounded-xl p-4 border border-[#3d4f62]/30 shadow-[4px_4px_12px_#050c14,-4px_-4px_12px_#0f2638]">
@@ -176,28 +176,28 @@ export function GroupParticipants() {
             <span className="text-[#8b96a5] text-sm">Pesquisadores</span>
             <UserCheck className="w-5 h-5 text-[#4a9eff]" />
           </div>
-          <div className="text-white text-2xl font-bold">{stats.researchers}</div>
+          <div className="text-white text-2xl font-bold">{estatisticas.pesquisadores}</div>
         </div>
       </div>
 
-      {/* Actions Bar */}
+      {/* Barra de Ações */}
       <div className="flex flex-col md:flex-row gap-4 mb-6">
-        {/* Search */}
+        {/* Busca */}
         <div className="flex-1 relative">
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#8b96a5]" />
           <input
             type="text"
             placeholder="Buscar participantes..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            value={termoBusca}
+            onChange={(e) => setTermoBusca(e.target.value)}
             className="w-full pl-12 pr-4 py-3 bg-[#0d1f30] rounded-xl border border-[#3d4f62]/30 text-white placeholder-[#8b96a5] shadow-[inset_2px_2px_4px_#050c14] focus:outline-none focus:border-[#ff8c42]/50"
           />
         </div>
 
-        {/* Filter */}
+        {/* Filtro */}
         <select
-          value={filterRole}
-          onChange={(e) => setFilterRole(e.target.value)}
+          value={filtroFuncao}
+          onChange={(e) => setFiltroFuncao(e.target.value)}
           className="px-4 py-3 bg-[#0d1f30] rounded-xl border border-[#3d4f62]/30 text-white shadow-[inset_2px_2px_4px_#050c14] focus:outline-none focus:border-[#ff8c42]/50"
         >
           <option value="all">Todas as Funções</option>
@@ -208,59 +208,59 @@ export function GroupParticipants() {
           <option value="Aluno">Aluno</option>
         </select>
 
-        {/* Add Participant Button */}
+        {/* Botão Adicionar Participante */}
         <button className="px-6 py-3 bg-gradient-to-r from-[#ff8c42] to-[#f94c10] text-white rounded-xl shadow-[0_4px_12px_rgba(255,140,66,0.3)] hover:shadow-[0_6px_16px_rgba(255,140,66,0.5)] transition-all duration-300 flex items-center gap-2 font-medium">
           <Plus className="w-5 h-5" />
           <span>Adicionar Participante</span>
         </button>
       </div>
 
-      {/* Participants List */}
+      {/* Lista de Participantes */}
       <div className="space-y-4">
-        {filteredParticipants.map((participant) => (
+        {participantesFiltrados.map((participante) => (
           <div
-            key={participant.id}
+            key={participante.id}
             className={`bg-[#0d1f30] rounded-2xl p-6 border border-[#3d4f62]/30 shadow-[6px_6px_16px_#050c14,-6px_-6px_16px_#0f2638] hover:shadow-[inset_2px_2px_6px_#050c14,inset_-2px_-2px_6px_#0f2638] transition-all duration-300 ${
-              participant.status === "Inativo" ? "opacity-60" : ""
+              participante.status === "Inativo" ? "opacity-60" : ""
             }`}
           >
             <div className="flex flex-col lg:flex-row lg:items-center gap-4">
-              {/* Participant Info */}
+              {/* Informações do Participante */}
               <div className="flex-1">
                 <div className="flex items-start gap-4">
                   {/* Avatar */}
-                  <div className={`w-14 h-14 rounded-full bg-gradient-to-br ${getRoleColor(participant.role)} flex items-center justify-center font-bold text-lg shadow-lg`}>
-                    {participant.role === "Supervisor" ? (
-                      getRoleIcon(participant.role)
+                  <div className={`w-14 h-14 rounded-full bg-gradient-to-br ${obterCorFuncao(participante.funcao)} flex items-center justify-center font-bold text-lg shadow-lg`}>
+                    {participante.funcao === "Supervisor" ? (
+                      obterIconeFuncao(participante.funcao)
                     ) : (
-                      participant.name.charAt(0)
+                      participante.nome.charAt(0)
                     )}
                   </div>
 
-                  {/* Details */}
+                  {/* Detalhes */}
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-2">
-                      <h3 className="text-white font-semibold">{participant.name}</h3>
-                      <span className={`px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1 ${getRoleColor(participant.role)}`}>
-                        {getRoleIcon(participant.role)}
-                        {participant.role}
+                      <h3 className="text-white font-semibold">{participante.nome}</h3>
+                      <span className={`px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1 ${obterCorFuncao(participante.funcao)}`}>
+                        {obterIconeFuncao(participante.funcao)}
+                        {participante.funcao}
                       </span>
-                      {participant.status === "Inativo" && (
+                      {participante.status === "Inativo" && (
                         <span className="px-3 py-1 rounded-full text-xs font-medium bg-[#8b96a5]/20 text-[#8b96a5]">
                           Inativo
                         </span>
                       )}
                     </div>
-                    <p className="text-sm text-[#8b96a5] mb-3">{participant.email}</p>
+                    <p className="text-sm text-[#8b96a5] mb-3">{participante.email}</p>
 
-                    {/* Permissions */}
+                    {/* Permissões */}
                     <div className="flex flex-wrap gap-2">
-                      {participant.permissions.map((permission, idx) => (
+                      {participante.permissoes.map((permissao, idx) => (
                         <span
                           key={idx}
                           className="px-2 py-1 bg-[#0a1929] rounded-lg text-xs text-[#8b96a5] border border-[#3d4f62]/30"
                         >
-                          {permission}
+                          {permissao}
                         </span>
                       ))}
                     </div>
@@ -268,16 +268,16 @@ export function GroupParticipants() {
                 </div>
               </div>
 
-              {/* Actions */}
+              {/* Ações */}
               <div className="flex items-center gap-2 lg:flex-col">
                 <div className="text-xs text-[#8b96a5] mb-2">
-                  Desde {new Date(participant.joinDate).toLocaleDateString('pt-BR')}
+                  Desde {new Date(participante.dataEntrada).toLocaleDateString('pt-BR')}
                 </div>
                 <div className="flex gap-2">
                   <button className="p-2 rounded-lg bg-[#0a1929] hover:bg-[#3d4f62]/20 transition-colors border border-[#3d4f62]/30">
                     <Edit className="w-4 h-4 text-[#4a9eff]" />
                   </button>
-                  {participant.role !== "Supervisor" && (
+                  {participante.funcao !== "Supervisor" && (
                     <button className="p-2 rounded-lg bg-[#0a1929] hover:bg-[#3d4f62]/20 transition-colors border border-[#3d4f62]/30">
                       <Trash2 className="w-4 h-4 text-[#ef4444]" />
                     </button>
@@ -289,15 +289,15 @@ export function GroupParticipants() {
         ))}
       </div>
 
-      {/* Empty State */}
-      {filteredParticipants.length === 0 && (
+      {/* Estado Vazio */}
+      {participantesFiltrados.length === 0 && (
         <div className="text-center py-12 bg-[#0d1f30] rounded-2xl border border-[#3d4f62]/30">
           <UserCheck className="w-16 h-16 text-[#3d4f62] mx-auto mb-4" />
           <p className="text-[#8b96a5]">Nenhum participante encontrado</p>
         </div>
       )}
 
-      {/* Role Legend */}
+      {/* Legenda de Funções */}
       <div className="mt-8 bg-[#0d1f30] rounded-2xl p-6 border border-[#3d4f62]/30 shadow-[6px_6px_16px_#050c14,-6px_-6px_16px_#0f2638]">
         <h3 className="text-white mb-4">Funções e Permissões</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">

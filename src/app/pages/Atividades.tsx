@@ -1,149 +1,149 @@
 import { ListTodo, Plus, Search, Calendar, FolderKanban, CheckCircle, Circle, Clock, AlertCircle } from "lucide-react";
 import { useState } from "react";
 
-export function Activities() {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [filterProject, setFilterProject] = useState("all");
-  const [filterStatus, setFilterStatus] = useState("all");
+export function Atividades() {
+  const [termoBusca, setTermoBusca] = useState("");
+  const [filtroProjeto, setFiltroProjeto] = useState("all");
+  const [filtroStatus, setFiltroStatus] = useState("all");
 
-  const projects = [
-    { id: 1, name: "Desenvolvimento de Modelo de Deep Learning" },
-    { id: 2, name: "Análise de Algoritmos Quânticos" },
-    { id: 3, name: "Auditoria de Segurança em Redes" },
-    { id: 4, name: "Implementação de Smart Contracts" },
+  const projetos = [
+    { id: 1, nome: "Desenvolvimento de Modelo de Deep Learning" },
+    { id: 2, nome: "Análise de Algoritmos Quânticos" },
+    { id: 3, nome: "Auditoria de Segurança em Redes" },
+    { id: 4, nome: "Implementação de Smart Contracts" },
   ];
 
-  const activities = [
+  const atividades = [
     {
       id: 1,
-      name: "Coleta de Dataset de Imagens",
-      description: "Realizar a coleta e curadoria de 10.000 imagens para treinamento do modelo de classificação",
-      dueDate: "2024-04-15",
-      projectId: 1,
-      projectName: "Desenvolvimento de Modelo de Deep Learning",
+      nome: "Coleta de Dataset de Imagens",
+      descricao: "Realizar a coleta e curadoria de 10.000 imagens para treinamento do modelo de classificação",
+      dataEntrega: "2024-04-15",
+      projetoId: 1,
+      nomeProjeto: "Desenvolvimento de Modelo de Deep Learning",
       status: "Em Andamento",
-      completedDate: null
+      dataConclusao: null
     },
     {
       id: 2,
-      name: "Implementação da Arquitetura CNN",
-      description: "Desenvolver a arquitetura da rede neural convolucional baseada em ResNet",
-      dueDate: "2024-04-20",
-      projectId: 1,
-      projectName: "Desenvolvimento de Modelo de Deep Learning",
+      nome: "Implementação da Arquitetura CNN",
+      descricao: "Desenvolver a arquitetura da rede neural convolucional baseada em ResNet",
+      dataEntrega: "2024-04-20",
+      projetoId: 1,
+      nomeProjeto: "Desenvolvimento de Modelo de Deep Learning",
       status: "Pendente",
-      completedDate: null
+      dataConclusao: null
     },
     {
       id: 3,
-      name: "Treinamento do Modelo",
-      description: "Treinar o modelo com os hiperparâmetros definidos e validar accuracy mínima de 85%",
-      dueDate: "2024-04-30",
-      projectId: 1,
-      projectName: "Desenvolvimento de Modelo de Deep Learning",
+      nome: "Treinamento do Modelo",
+      descricao: "Treinar o modelo com os hiperparâmetros definidos e validar accuracy mínima de 85%",
+      dataEntrega: "2024-04-30",
+      projetoId: 1,
+      nomeProjeto: "Desenvolvimento de Modelo de Deep Learning",
       status: "Pendente",
-      completedDate: null
+      dataConclusao: null
     },
     {
       id: 4,
-      name: "Revisão Bibliográfica sobre Qubits",
-      description: "Compilar e analisar papers recentes sobre implementações de qubits topológicos",
-      dueDate: "2024-04-12",
-      projectId: 2,
-      projectName: "Análise de Algoritmos Quânticos",
+      nome: "Revisão Bibliográfica sobre Qubits",
+      descricao: "Compilar e analisar papers recentes sobre implementações de qubits topológicos",
+      dataEntrega: "2024-04-12",
+      projetoId: 2,
+      nomeProjeto: "Análise de Algoritmos Quânticos",
       status: "Concluída",
-      completedDate: "2024-04-10"
+      dataConclusao: "2024-04-10"
     },
     {
       id: 5,
-      name: "Simulação de Algoritmo de Shor",
-      description: "Implementar simulação do algoritmo de Shor para fatoração de números primos",
-      dueDate: "2024-05-01",
-      projectId: 2,
-      projectName: "Análise de Algoritmos Quânticos",
+      nome: "Simulação de Algoritmo de Shor",
+      descricao: "Implementar simulação do algoritmo de Shor para fatoração de números primos",
+      dataEntrega: "2024-05-01",
+      projetoId: 2,
+      nomeProjeto: "Análise de Algoritmos Quânticos",
       status: "Em Andamento",
-      completedDate: null
+      dataConclusao: null
     },
     {
       id: 6,
-      name: "Análise de Complexidade",
-      description: "Comparar complexidade temporal e espacial com algoritmos clássicos equivalentes",
-      dueDate: "2024-05-15",
-      projectId: 2,
-      projectName: "Análise de Algoritmos Quânticos",
+      nome: "Análise de Complexidade",
+      descricao: "Comparar complexidade temporal e espacial com algoritmos clássicos equivalentes",
+      dataEntrega: "2024-05-15",
+      projetoId: 2,
+      nomeProjeto: "Análise de Algoritmos Quânticos",
       status: "Pendente",
-      completedDate: null
+      dataConclusao: null
     },
     {
       id: 7,
-      name: "Scan de Vulnerabilidades",
-      description: "Executar scan automatizado em todos os servidores da infraestrutura de rede",
-      dueDate: "2024-04-08",
-      projectId: 3,
-      projectName: "Auditoria de Segurança em Redes",
+      nome: "Scan de Vulnerabilidades",
+      descricao: "Executar scan automatizado em todos os servidores da infraestrutura de rede",
+      dataEntrega: "2024-04-08",
+      projetoId: 3,
+      nomeProjeto: "Auditoria de Segurança em Redes",
       status: "Atrasada",
-      completedDate: null
+      dataConclusao: null
     },
     {
       id: 8,
-      name: "Análise de Logs de Segurança",
-      description: "Revisar logs dos últimos 3 meses identificando padrões suspeitos",
-      dueDate: "2024-04-18",
-      projectId: 3,
-      projectName: "Auditoria de Segurança em Redes",
+      nome: "Análise de Logs de Segurança",
+      descricao: "Revisar logs dos últimos 3 meses identificando padrões suspeitos",
+      dataEntrega: "2024-04-18",
+      projetoId: 3,
+      nomeProjeto: "Auditoria de Segurança em Redes",
       status: "Em Andamento",
-      completedDate: null
+      dataConclusao: null
     },
     {
       id: 9,
-      name: "Relatório de Recomendações",
-      description: "Elaborar relatório técnico com recomendações de melhorias de segurança",
-      dueDate: "2024-04-25",
-      projectId: 3,
-      projectName: "Auditoria de Segurança em Redes",
+      nome: "Relatório de Recomendações",
+      descricao: "Elaborar relatório técnico com recomendações de melhorias de segurança",
+      dataEntrega: "2024-04-25",
+      projetoId: 3,
+      nomeProjeto: "Auditoria de Segurança em Redes",
       status: "Pendente",
-      completedDate: null
+      dataConclusao: null
     },
     {
       id: 10,
-      name: "Deploy do Contrato ERC-721",
-      description: "Realizar deploy e verificação do contrato de NFT na testnet Sepolia",
-      dueDate: "2024-03-25",
-      projectId: 4,
-      projectName: "Implementação de Smart Contracts",
+      nome: "Deploy do Contrato ERC-721",
+      descricao: "Realizar deploy e verificação do contrato de NFT na testnet Sepolia",
+      dataEntrega: "2024-03-25",
+      projetoId: 4,
+      nomeProjeto: "Implementação de Smart Contracts",
       status: "Concluída",
-      completedDate: "2024-03-24"
+      dataConclusao: "2024-03-24"
     },
     {
       id: 11,
-      name: "Testes de Integração",
-      description: "Executar suite completa de testes incluindo edge cases e security tests",
-      dueDate: "2024-03-28",
-      projectId: 4,
-      projectName: "Implementação de Smart Contracts",
+      nome: "Testes de Integração",
+      descricao: "Executar suite completa de testes incluindo edge cases e security tests",
+      dataEntrega: "2024-03-28",
+      projetoId: 4,
+      nomeProjeto: "Implementação de Smart Contracts",
       status: "Concluída",
-      completedDate: "2024-03-27"
+      dataConclusao: "2024-03-27"
     },
   ];
 
-  const filteredActivities = activities.filter(a => {
-    const matchesSearch = a.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         a.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         a.projectName.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesProject = filterProject === "all" || a.projectId === parseInt(filterProject);
-    const matchesStatus = filterStatus === "all" || a.status === filterStatus;
-    return matchesSearch && matchesProject && matchesStatus;
+  const atividadesFiltradas = atividades.filter(a => {
+    const correspondeBusca = a.nome.toLowerCase().includes(termoBusca.toLowerCase()) ||
+                         a.descricao.toLowerCase().includes(termoBusca.toLowerCase()) ||
+                         a.nomeProjeto.toLowerCase().includes(termoBusca.toLowerCase());
+    const correspondeProjeto = filtroProjeto === "all" || a.projetoId === parseInt(filtroProjeto);
+    const correspondeStatus = filtroStatus === "all" || a.status === filtroStatus;
+    return correspondeBusca && correspondeProjeto && correspondeStatus;
   });
 
-  const stats = {
-    total: activities.length,
-    pending: activities.filter(a => a.status === "Pendente").length,
-    inProgress: activities.filter(a => a.status === "Em Andamento").length,
-    completed: activities.filter(a => a.status === "Concluída").length,
-    delayed: activities.filter(a => a.status === "Atrasada").length,
+  const estatisticas = {
+    total: atividades.length,
+    pendentes: atividades.filter(a => a.status === "Pendente").length,
+    emAndamento: atividades.filter(a => a.status === "Em Andamento").length,
+    concluidas: atividades.filter(a => a.status === "Concluída").length,
+    atrasadas: atividades.filter(a => a.status === "Atrasada").length,
   };
 
-  const getStatusIcon = (status: string) => {
+  const obterIconeStatus = (status: string) => {
     switch (status) {
       case "Concluída": return <CheckCircle className="w-5 h-5 text-[#10b981]" />;
       case "Em Andamento": return <Clock className="w-5 h-5 text-[#ff8c42]" />;
@@ -152,7 +152,7 @@ export function Activities() {
     }
   };
 
-  const getStatusColor = (status: string) => {
+  const obterCorStatus = (status: string) => {
     switch (status) {
       case "Concluída": return "bg-[#10b981]/20 text-[#10b981]";
       case "Em Andamento": return "bg-[#ff8c42]/20 text-[#ff8c42]";
@@ -161,27 +161,27 @@ export function Activities() {
     }
   };
 
-  const isOverdue = (dueDate: string, status: string) => {
+  const estaAtrasada = (dataEntrega: string, status: string) => {
     if (status === "Concluída") return false;
-    return new Date(dueDate) < new Date();
+    return new Date(dataEntrega) < new Date();
   };
 
   return (
     <div className="h-full overflow-auto p-6">
-      {/* Header */}
+      {/* Cabeçalho */}
       <div className="mb-6">
         <h1 className="text-white mb-2">Atividades</h1>
         <p className="text-[#8b96a5]">Gerencie as atividades dos projetos em andamento</p>
       </div>
 
-      {/* Stats Cards */}
+      {/* Cards de Estatísticas */}
       <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
         <div className="bg-[#0d1f30] rounded-xl p-4 border border-[#3d4f62]/30 shadow-[4px_4px_12px_#050c14,-4px_-4px_12px_#0f2638]">
           <div className="flex items-center justify-between mb-2">
             <span className="text-[#8b96a5] text-sm">Total</span>
             <ListTodo className="w-5 h-5 text-[#4a9eff]" />
           </div>
-          <div className="text-white text-2xl font-bold">{stats.total}</div>
+          <div className="text-white text-2xl font-bold">{estatisticas.total}</div>
         </div>
 
         <div className="bg-[#0d1f30] rounded-xl p-4 border border-[#3d4f62]/30 shadow-[4px_4px_12px_#050c14,-4px_-4px_12px_#0f2638]">
@@ -189,7 +189,7 @@ export function Activities() {
             <span className="text-[#8b96a5] text-sm">Pendentes</span>
             <Circle className="w-5 h-5 text-[#8b96a5]" />
           </div>
-          <div className="text-white text-2xl font-bold">{stats.pending}</div>
+          <div className="text-white text-2xl font-bold">{estatisticas.pendentes}</div>
         </div>
 
         <div className="bg-[#0d1f30] rounded-xl p-4 border border-[#3d4f62]/30 shadow-[4px_4px_12px_#050c14,-4px_-4px_12px_#0f2638]">
@@ -197,7 +197,7 @@ export function Activities() {
             <span className="text-[#8b96a5] text-sm">Em Andamento</span>
             <Clock className="w-5 h-5 text-[#ff8c42]" />
           </div>
-          <div className="text-white text-2xl font-bold">{stats.inProgress}</div>
+          <div className="text-white text-2xl font-bold">{estatisticas.emAndamento}</div>
         </div>
 
         <div className="bg-[#0d1f30] rounded-xl p-4 border border-[#3d4f62]/30 shadow-[4px_4px_12px_#050c14,-4px_-4px_12px_#0f2638]">
@@ -205,7 +205,7 @@ export function Activities() {
             <span className="text-[#8b96a5] text-sm">Concluídas</span>
             <CheckCircle className="w-5 h-5 text-[#10b981]" />
           </div>
-          <div className="text-white text-2xl font-bold">{stats.completed}</div>
+          <div className="text-white text-2xl font-bold">{estatisticas.concluidas}</div>
         </div>
 
         <div className="bg-[#0d1f30] rounded-xl p-4 border border-[#3d4f62]/30 shadow-[4px_4px_12px_#050c14,-4px_-4px_12px_#0f2638]">
@@ -213,40 +213,40 @@ export function Activities() {
             <span className="text-[#8b96a5] text-sm">Atrasadas</span>
             <AlertCircle className="w-5 h-5 text-[#ef4444]" />
           </div>
-          <div className="text-white text-2xl font-bold">{stats.delayed}</div>
+          <div className="text-white text-2xl font-bold">{estatisticas.atrasadas}</div>
         </div>
       </div>
 
-      {/* Actions Bar */}
+      {/* Barra de Ações */}
       <div className="flex flex-col md:flex-row gap-4 mb-6">
-        {/* Search */}
+        {/* Busca */}
         <div className="flex-1 relative">
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#8b96a5]" />
           <input
             type="text"
             placeholder="Buscar atividades..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            value={termoBusca}
+            onChange={(e) => setTermoBusca(e.target.value)}
             className="w-full pl-12 pr-4 py-3 bg-[#0d1f30] rounded-xl border border-[#3d4f62]/30 text-white placeholder-[#8b96a5] shadow-[inset_2px_2px_4px_#050c14] focus:outline-none focus:border-[#ff8c42]/50"
           />
         </div>
 
-        {/* Filter by Project */}
+        {/* Filtro por Projeto */}
         <select
-          value={filterProject}
-          onChange={(e) => setFilterProject(e.target.value)}
+          value={filtroProjeto}
+          onChange={(e) => setFiltroProjeto(e.target.value)}
           className="px-4 py-3 bg-[#0d1f30] rounded-xl border border-[#3d4f62]/30 text-white shadow-[inset_2px_2px_4px_#050c14] focus:outline-none focus:border-[#ff8c42]/50"
         >
           <option value="all">Todos os Projetos</option>
-          {projects.map(project => (
-            <option key={project.id} value={project.id}>{project.name}</option>
+          {projetos.map(projeto => (
+            <option key={projeto.id} value={projeto.id}>{projeto.nome}</option>
           ))}
         </select>
 
-        {/* Filter by Status */}
+        {/* Filtro por Status */}
         <select
-          value={filterStatus}
-          onChange={(e) => setFilterStatus(e.target.value)}
+          value={filtroStatus}
+          onChange={(e) => setFiltroStatus(e.target.value)}
           className="px-4 py-3 bg-[#0d1f30] rounded-xl border border-[#3d4f62]/30 text-white shadow-[inset_2px_2px_4px_#050c14] focus:outline-none focus:border-[#ff8c42]/50"
         >
           <option value="all">Todos os Status</option>
@@ -256,40 +256,40 @@ export function Activities() {
           <option value="Atrasada">Atrasadas</option>
         </select>
 
-        {/* New Activity Button */}
+        {/* Botão Nova Atividade */}
         <button className="px-6 py-3 bg-gradient-to-r from-[#ff8c42] to-[#f94c10] text-white rounded-xl shadow-[0_4px_12px_rgba(255,140,66,0.3)] hover:shadow-[0_6px_16px_rgba(255,140,66,0.5)] transition-all duration-300 flex items-center gap-2 font-medium">
           <Plus className="w-5 h-5" />
           <span>Nova Atividade</span>
         </button>
       </div>
 
-      {/* Activities List */}
+      {/* Lista de Atividades */}
       <div className="space-y-4">
-        {filteredActivities.map((activity) => (
+        {atividadesFiltradas.map((atividade) => (
           <div
-            key={activity.id}
+            key={atividade.id}
             className="bg-[#0d1f30] rounded-2xl p-6 border border-[#3d4f62]/30 shadow-[6px_6px_16px_#050c14,-6px_-6px_16px_#0f2638] hover:shadow-[inset_2px_2px_6px_#050c14,inset_-2px_-2px_6px_#0f2638] transition-all duration-300"
           >
             <div className="flex flex-col lg:flex-row lg:items-start gap-4">
-              {/* Activity Info */}
+              {/* Informações da Atividade */}
               <div className="flex-1">
                 <div className="flex items-start gap-3 mb-3">
-                  {getStatusIcon(activity.status)}
+                  {obterIconeStatus(atividade.status)}
                   <div className="flex-1">
-                    <h3 className="text-white font-semibold mb-1">{activity.name}</h3>
-                    <p className="text-sm text-[#8b96a5] mb-2">{activity.description}</p>
+                    <h3 className="text-white font-semibold mb-1">{atividade.nome}</h3>
+                    <p className="text-sm text-[#8b96a5] mb-2">{atividade.descricao}</p>
                     <div className="flex items-center gap-2">
                       <FolderKanban className="w-4 h-4 text-[#4a9eff]" />
-                      <span className="text-xs text-[#8b96a5]">{activity.projectName}</span>
+                      <span className="text-xs text-[#8b96a5]">{atividade.nomeProjeto}</span>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Activity Meta */}
+              {/* Metadados da Atividade */}
               <div className="flex flex-col items-start lg:items-end gap-3">
-                <span className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(activity.status)}`}>
-                  {activity.status}
+                <span className={`px-3 py-1 rounded-full text-xs font-medium ${obterCorStatus(atividade.status)}`}>
+                  {atividade.status}
                 </span>
 
                 <div className="flex items-center gap-2">
@@ -297,22 +297,22 @@ export function Activities() {
                   <div className="text-xs">
                     <span className="text-[#8b96a5]">Entrega: </span>
                     <span className={`font-medium ${
-                      isOverdue(activity.dueDate, activity.status)
+                      estaAtrasada(atividade.dataEntrega, atividade.status)
                         ? "text-[#ef4444]"
                         : "text-white"
                     }`}>
-                      {new Date(activity.dueDate).toLocaleDateString('pt-BR')}
+                      {new Date(atividade.dataEntrega).toLocaleDateString('pt-BR')}
                     </span>
                   </div>
                 </div>
 
-                {activity.completedDate && (
+                {atividade.dataConclusao && (
                   <div className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-[#10b981]" />
                     <div className="text-xs">
                       <span className="text-[#8b96a5]">Concluída em: </span>
                       <span className="text-[#10b981] font-medium">
-                        {new Date(activity.completedDate).toLocaleDateString('pt-BR')}
+                        {new Date(atividade.dataConclusao).toLocaleDateString('pt-BR')}
                       </span>
                     </div>
                   </div>
@@ -323,8 +323,8 @@ export function Activities() {
         ))}
       </div>
 
-      {/* Empty State */}
-      {filteredActivities.length === 0 && (
+      {/* Estado Vazio */}
+      {atividadesFiltradas.length === 0 && (
         <div className="text-center py-12 bg-[#0d1f30] rounded-2xl border border-[#3d4f62]/30">
           <ListTodo className="w-16 h-16 text-[#3d4f62] mx-auto mb-4" />
           <p className="text-[#8b96a5]">Nenhuma atividade encontrada</p>
