@@ -1,10 +1,12 @@
 import { useState } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, useSearchParams } from "react-router";
 import { LoginService } from "../services/auth/LoginService";
 import { Eye, EyeOff, LogIn, Orbit } from "lucide-react";
 
 export function Login() {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const redirect = searchParams.get("redirect") || "/";
   const [mostrarSenha, setMostrarSenha] = useState(false);
   const loginService = new LoginService();
   const [formulario, setFormulario] = useState({ usuario: "", senha: "" });
@@ -22,7 +24,7 @@ export function Login() {
       if (response && response.token) {
         localStorage.setItem("token", response.token);
         localStorage.setItem("token_tipo", response.tipo || "Bearer");
-        navigate("/");
+        navigate(redirect);
       }
     } catch (err: any) {
       setErro(err?.mensagem || err?.message || "Erro ao realizar login. Verifique suas credenciais.");
@@ -62,13 +64,12 @@ export function Login() {
             </div>
           </div>
           <h1 className="text-3xl font-bold text-white tracking-wider">ORBYTUM</h1>
-          <p className="text-[#9e9e9e] mt-2 text-sm">Gestão acadêmica orbital</p>
         </div>
 
         {/* Card */}
         <div className="bg-[#1e1e1e] rounded-2xl p-8 border border-[#2e2e2e]/30">
-          <h2 className="text-white text-xl font-semibold mb-2">Entrar no sistema</h2>
-          <p className="text-[#9e9e9e] text-sm mb-6">Use suas credenciais institucionais</p>
+          <h2 className="text-white text-xl font-semibold mb-2">Login</h2>
+          <p className="text-[#9e9e9e] text-sm mb-6">Informe seu email e senha</p>
 
           <form onSubmit={enviarFormulario} className="space-y-5">
             {/* Usuário */}
