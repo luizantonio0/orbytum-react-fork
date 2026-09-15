@@ -27,6 +27,7 @@ export const router = createBrowserRouter([
     path: "/login",
     Component: Login,
   },
+  // TODO: /criar-admin-inicial não segue os padrões de design da tela /convites/aceitar/cadastro/:token corrigir isso
   {
     path: "/criar-admin-inicial",
     Component: CriarAdminInicial,
